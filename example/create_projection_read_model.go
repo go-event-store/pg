@@ -28,8 +28,8 @@ func CreateReadModelProjection(ctx context.Context, pool *pgxpool.Pool) {
 		Init(func() interface{} {
 			return struct{}{}
 		}).
-		When(map[string]func(state interface{}, event eventstore.DomainEvent) interface{}{
-			FooEventName: func(state interface{}, event eventstore.DomainEvent) interface{} {
+		When(map[string]eventstore.EventHandler{
+			FooEventName: func(state interface{}, event eventstore.DomainEvent) (interface{}, error) {
 				projector.ReadModel.Stack(
 					"insert",
 					map[string]interface{}{
@@ -49,9 +49,9 @@ func CreateReadModelProjection(ctx context.Context, pool *pgxpool.Pool) {
 					},
 				)
 
-				return state
+				return state, nil
 			},
-			BarEventName: func(state interface{}, event eventstore.DomainEvent) interface{} {
+			BarEventName: func(state interface{}, event eventstore.DomainEvent) (interface{}, error) {
 				projector.ReadModel.Stack(
 					"insert",
 					map[string]interface{}{
@@ -68,7 +68,7 @@ func CreateReadModelProjection(ctx context.Context, pool *pgxpool.Pool) {
 					},
 				)
 
-				return state
+				return state, nil
 			},
 		}).
 		Run(ctx, false)
