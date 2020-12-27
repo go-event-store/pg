@@ -23,12 +23,12 @@ func CreateQuery(ctx context.Context, pool *pgxpool.Pool) {
 		Init(func() interface{} {
 			return []string{}
 		}).
-		When(map[string]func(state interface{}, event eventstore.DomainEvent) interface{}{
-			FooEventName: func(state interface{}, event eventstore.DomainEvent) interface{} {
-				return append(state.([]string), event.Payload().(FooEvent).Foo)
+		When(map[string]eventstore.EventHandler{
+			FooEventName: func(state interface{}, event eventstore.DomainEvent) (interface{}, error) {
+				return append(state.([]string), event.Payload().(FooEvent).Foo), nil
 			},
-			BarEventName: func(state interface{}, event eventstore.DomainEvent) interface{} {
-				return append(state.([]string), event.Payload().(BarEvent).Bar)
+			BarEventName: func(state interface{}, event eventstore.DomainEvent) (interface{}, error) {
+				return append(state.([]string), event.Payload().(BarEvent).Bar), nil
 			},
 		}).
 		Run(ctx)
