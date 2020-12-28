@@ -5,10 +5,8 @@ github.com/coreos/go-systemd v0.0.0-20190719114852-fd7a80b32e1f/go.mod h1:F5haX7
 github.com/creack/pty v1.1.7/go.mod h1:lj5s0c3V2DBrqTV7llrYr5NG6My20zk30Fl46Y7DoTY=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
-github.com/go-event-store/eventstore v1.0.0 h1:15y3xUhw0js84HqyDBJEcZ3oMr1ZjREcn5oF/YVk5AY=
-github.com/go-event-store/eventstore v1.0.0/go.mod h1:s8/jLg39ufNeSNOZXAi84S6gVIFIDS0CobhTniD5THo=
-github.com/go-event-store/eventstore v1.1.0 h1:iLaQWu7qGsqHbkb+GRCAFAV/HTXZMIwtQvk0zt7lzVk=
-github.com/go-event-store/eventstore v1.1.0/go.mod h1:P1Ok5eudlIPB8wdsL1lc6l2Cb+SDveMQYpyUKIrYN8k=
+github.com/go-event-store/eventstore v0.6.0 h1:NysulZluxTvHEbreKmBgowrQJ1dYmIZc69GB0WHIFjk=
+github.com/go-event-store/eventstore v0.6.0/go.mod h1:P1Ok5eudlIPB8wdsL1lc6l2Cb+SDveMQYpyUKIrYN8k=
 github.com/go-stack/stack v1.8.0/go.mod h1:v0f6uXyyMGvRgIKkXu+yp6POWl0qKG85gN/melR3HDY=
 github.com/gofrs/uuid v3.2.0+incompatible/go.mod h1:b2aQJv3Z4Fp6yNu3cdSllBxTCLRxnplIgP/c0N/04lM=
 github.com/google/renameio v0.1.0/go.mod h1:KWCgfxg9yswjAJkECMjeO8J8rahYeXnNhOm40UhjYkI=
