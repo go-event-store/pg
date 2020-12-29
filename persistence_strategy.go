@@ -315,7 +315,7 @@ func (ps PersistenceStrategy) createWhereClause(paramCounter int, matcher events
 		if match.FieldType == eventstore.MetadataField {
 			switch v := match.Value.(type) {
 			case bool:
-				wheres = append(wheres, fmt.Sprintf(`metadata->'%s' %s`, match.Field, expression(strconv.FormatBool(v))))
+				wheres = append(wheres, fmt.Sprintf(`metadata->>'%s' %s`, match.Field, expression("'"+strconv.FormatBool(v)+"'")))
 			case int:
 				paramCounter++
 				values = append(values, match.Value)

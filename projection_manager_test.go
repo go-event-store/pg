@@ -250,7 +250,17 @@ func Test_PostgresProjector(t *testing.T) {
 		})
 
 		projector := eventstore.NewProjector("project_all", es, pm)
-		defer projector.Delete(ctx, false)
+		defer func() {
+			err = es.DeleteStream(ctx, "foo-aggregate-stream")
+			if err != nil {
+				t.Error(err)
+			}
+
+			err = projector.Delete(ctx, false)
+			if err != nil {
+				t.Error(err)
+			}
+		}()
 
 		projector.
 			Init(func() interface{} {
@@ -276,7 +286,7 @@ func Test_PostgresProjector(t *testing.T) {
 
 		state := convert(result)
 		if len(state) != 5 {
-			t.Fatal("Projection should return a list of all Event Payloads")
+			t.Fatal("Projection should return a list of 5 Event Payloads")
 		}
 
 		if state[0] != "Foo1" || state[1] != "Foo2" || state[2] != "Foo3" || state[3] != "Bar" || state[4] != "Foo4" {

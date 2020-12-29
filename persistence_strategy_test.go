@@ -221,4 +221,74 @@ func Test_PostgresEventStore(t *testing.T) {
 		eventStore.DeleteStream(ctx, "foo-stream")
 		eventStore.DeleteStream(ctx, "bar-stream")
 	})
+
+	t.Run("Load from Stream with bool and integer Metamatcher", func(t *testing.T) {
+		err := eventStore.CreateStream(ctx, "foo-stream")
+		if err != nil {
+			t.Error(err)
+		}
+		defer eventStore.DeleteStream(ctx, "foo-stream")
+
+		uuid1 := uuid.NewV4()
+		uuid2 := uuid.NewV4()
+
+		err = eventStore.AppendTo(ctx, "foo-stream", []eventstore.DomainEvent{
+			eventstore.
+				NewDomainEvent(uuid1, TestEvent{}, nil, time.Now()).
+				WithAddedMetadata("bool", true).
+				WithAddedMetadata("integer", 2),
+		})
+		if err != nil {
+			t.Error(err)
+		}
+		err = eventStore.AppendTo(ctx, "foo-stream", []eventstore.DomainEvent{
+			eventstore.
+				NewDomainEvent(uuid2, TestEvent{}, nil, time.Now()).
+				WithAddedMetadata("bool", true).
+				WithAddedMetadata("integer", 3),
+		})
+		if err != nil {
+			t.Error(err)
+		}
+
+		it, err := eventStore.Load(ctx, "foo-stream", 0, 0, []eventstore.MetadataMatch{
+			{
+				Field:     "integer",
+				FieldType: eventstore.MetadataField,
+				Value:     2,
+				Operation: eventstore.LowerThanEuqalsOperator,
+			},
+			{
+				Field:     "bool",
+				FieldType: eventstore.MetadataField,
+				Value:     true,
+				Operation: eventstore.EqualsOperator,
+			},
+		})
+		if err != nil {
+			t.Error(err)
+			return
+		}
+
+		ok, err := it.IsEmpty()
+		if err != nil {
+			t.Error(err)
+			return
+		}
+
+		if ok == true {
+			t.Error("Iterator should have result")
+			return
+		}
+
+		ev1, _ := it.Current()
+		if ev1.AggregateID() != uuid1 {
+			t.Error("Expected first appended Event")
+		}
+
+		hasNext := it.Next()
+		if hasNext {
+			t.Error("Expected only one result Event")
+		}
+	})
 }
