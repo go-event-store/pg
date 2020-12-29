@@ -7,6 +7,10 @@ github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSs
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/go-event-store/eventstore v0.6.0 h1:NysulZluxTvHEbreKmBgowrQJ1dYmIZc69GB0WHIFjk=
 github.com/go-event-store/eventstore v0.6.0/go.mod h1:P1Ok5eudlIPB8wdsL1lc6l2Cb+SDveMQYpyUKIrYN8k=
+github.com/go-event-store/eventstore v0.6.1 h1:icd/H2J6hL6yTS5mNeFcyu1XIBRey7USoV7AnuztrLA=
+github.com/go-event-store/eventstore v0.6.1/go.mod h1:P1Ok5eudlIPB8wdsL1lc6l2Cb+SDveMQYpyUKIrYN8k=
+github.com/go-event-store/eventstore v1.2.1 h1:WaP6DD8yYoGD3xhYPxaNmfZ7V2Ibvs+xgNWvBl46qZ4=
+github.com/go-event-store/eventstore v1.2.1/go.mod h1:P1Ok5eudlIPB8wdsL1lc6l2Cb+SDveMQYpyUKIrYN8k=
 github.com/go-stack/stack v1.8.0/go.mod h1:v0f6uXyyMGvRgIKkXu+yp6POWl0qKG85gN/melR3HDY=
 github.com/gofrs/uuid v3.2.0+incompatible/go.mod h1:b2aQJv3Z4Fp6yNu3cdSllBxTCLRxnplIgP/c0N/04lM=
 github.com/google/renameio v0.1.0/go.mod h1:KWCgfxg9yswjAJkECMjeO8J8rahYeXnNhOm40UhjYkI=
