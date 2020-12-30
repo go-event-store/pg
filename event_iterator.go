@@ -115,7 +115,7 @@ func (it *DomainEventIterator) fetchEvents() {
 
 	counter := it.appendRows(rows)
 
-	if counter <= limit {
+	if counter < limit {
 		it.done = true
 	}
 
